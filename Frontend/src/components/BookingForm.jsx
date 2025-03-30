@@ -1,72 +1,4 @@
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-// import { useLocation } from "react-router-dom";
-// import { TextField, Button, Typography, Container, Box } from "@mui/material";
-// import "./BookingForm.css";
 
-// const BookingForm = () => {
-//   const location = useLocation();
-//   const { roomId, hotelId, userId, userName, userEmail, userPhone } = location.state || {};
-
-//   const user = JSON.parse(localStorage.getItem("user")) || {};
-
-//   const [formData, setFormData] = useState({
-//     userId: user._id || "",
-//     hotelId: hotelId || "",
-//     roomId: roomId || "",
-//     bookingDate: "",
-//     userName: user.UName || "",
-//     userEmail: user.UEmail || "",
-//     userPhone: user.UPhone || "",
-//   });
- 
-
-//   const [message, setMessage] = useState("");
-
-//   const handleChange = (e) => {
-//     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-//   };
-
-
-
-//   const handleSubmit = async (e) => { 
-//     e.preventDefault(); 
-//     try { const response = await axios.post("http://localhost:4000/booking", formData); 
-//         console.log("Booking Success", response.data); alert("Booking submitted!"); 
-//         navigate("/hoteldash"); } 
-//         catch (error) { 
-//             console.error("Booking failed", error.response?.data || error.message); 
-//             alert("Booking failed: " + (error.response?.data?.message || error.message)); 
-//         } };
-//   console.log("📦 FormData to be submitted:", formData);
-//   return (
-//     <Container maxWidth="sm">
-//       <Box mt={5} className="booking-form-container">
-//         <Typography variant="h5" gutterBottom>Book a Room</Typography>
-//         <form onSubmit={handleSubmit}>
-//           <TextField label="Hotel ID" name="hotelId" value={formData.hotelId} fullWidth margin="normal" disabled />
-//           <TextField label="Room ID" name="roomId" value={formData.roomId} fullWidth margin="normal" disabled />
-//           <TextField
-//             type="date"
-//             name="bookingDate"
-//             value={formData.bookingDate}
-//             onChange={handleChange}
-//             fullWidth
-//             margin="normal"
-//             required
-//           />
-//           <TextField label="Name" name="userName" value={formData.userName} onChange={handleChange} fullWidth margin="normal" required />
-//           <TextField label="Email" name="userEmail" value={formData.userEmail} onChange={handleChange} fullWidth margin="normal" required />
-//           <TextField label="Phone" name="userPhone" value={formData.userPhone} onChange={handleChange} fullWidth margin="normal" required />
-//           <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>Book Now</Button>
-//         </form>
-//         {message && <Typography variant="body1" color="secondary" mt={2}>{message}</Typography>}
-//       </Box>
-//     </Container>
-//   );
-// };
-
-// export default BookingForm;
 
 import React, { useState } from "react";
 import axios from "axios";
@@ -115,10 +47,10 @@ const BookingForm = () => {
       // const res = await axios.post("http://localhost:4000/booking", formData);
       const res = await axios.post("http://localhost:4000/api/booking", formData);
       alert("Booking successful!");
-      console.log("✅ Booking created:", res.data);
+      console.log(" Booking created:", res.data);
       navigate("/hoteldash");
     } catch (error) {
-      console.error("❌ Booking error:", error.response?.data || error.message);
+      console.error(" Booking error:", error.response?.data || error.message);
       setMessage("Booking failed: " + (error.response?.data?.message || error.message));
     }
   };

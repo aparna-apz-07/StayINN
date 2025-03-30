@@ -12,7 +12,7 @@ import {
   DialogContent,
   DialogTitle
 } from "@mui/material";
-import "./HotelOwner.css"; // ✅ Import CSS for better styling
+import "./HotelOwner.css";
 
 const HotelOwner = () => {
   const [rooms, setRooms] = useState([]);  // Stores rooms for this hotel
@@ -28,7 +28,7 @@ const HotelOwner = () => {
     HDesc: ""
   });
 
-  // ✅ Fetch logged-in hotel owner's details
+  // Fetch logged-in hotel owner's details
   useEffect(() => {
     const owner = JSON.parse(localStorage.getItem("user"));
     if (owner && owner.HotelEmail) {
@@ -37,18 +37,18 @@ const HotelOwner = () => {
     }
   }, []);
 
-  // ✅ Fetch rooms by HotelEmail
+  //  Fetch rooms by HotelEmail
   const fetchRooms = async (email) => {
     try {
       const res = await axios.get(`http://localhost:4000/room/byemail/${email}`);
-      console.log("Rooms fetched:", res.data); // ✅ Debugging line
+      console.log("Rooms fetched:", res.data); // Debugging line
       setRooms(res.data);
     } catch (err) {
       console.error("Error fetching rooms:", err.message);
     }
   };
 
-  // ✅ Handle form open (for Add/Edit)
+  //  Handle form open (for Add/Edit)
   const handleOpen = (room = null) => {
     if (room) {
       setEditingRoom(room._id);
@@ -60,18 +60,18 @@ const HotelOwner = () => {
     setOpen(true);
   };
 
-  // ✅ Handle form close
+  //  Handle form close
   const handleClose = () => {
     setOpen(false);
     setEditingRoom(null);
   };
 
-  // ✅ Handle form input change
+  //  Handle form input change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // ✅ Add or Update Room
+  //  Add or Update Room
   const handleSubmit = async () => {
     try {
       if (editingRoom) {
@@ -86,7 +86,7 @@ const HotelOwner = () => {
     }
   };
 
-  // ✅ Delete Room
+  //  Delete Room
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:4000/room/delete/${id}`);
@@ -96,7 +96,7 @@ const HotelOwner = () => {
     }
   };
 
-  // ✅ Filter rooms dynamically
+  //  Filter rooms dynamically
   const filteredRooms = rooms.filter(
     (room) =>
       room.HName.toLowerCase().includes(searchTerm.toLowerCase()) ||

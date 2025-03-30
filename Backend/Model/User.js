@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     UPhone: { type: String, required: true, trim: true },
     UPassword: { type: String, required: true, minlength: 6 },
     userType: { type: String, enum: ['admin', 'user'], default: 'user' },
-    isAdmin: { type: Boolean, default: false }  // ✅ Admin field added
+    isAdmin: { type: Boolean, default: false } 
 });
 
 const UserModel = mongoose.model('User', userSchema);
